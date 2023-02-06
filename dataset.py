@@ -39,10 +39,10 @@ class SameDifferentDataset(Dataset):
         good_inds = torch.cat([true_inds, false_inds])
         
         # Save the relevant variables.
-        self.sprites = comparisons #[good_inds]
-        self.metadata = pd.concat([metadata, metadata]) #.iloc[good_inds]
-        self.task_variables = task_variables #[good_inds]
-        self.ys = ys #[good_inds]
+        self.sprites = comparisons[good_inds]
+        self.metadata = pd.concat([metadata, metadata]).iloc[good_inds]
+        self.task_variables = task_variables[good_inds]
+        self.ys = ys[good_inds]
         
     def __len__(self):
         return len(self.sprites)
